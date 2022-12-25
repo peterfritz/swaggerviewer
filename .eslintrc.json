@@ -1,3 +1,23 @@
 {
-  "extends": "next/core-web-vitals"
+  "$schema": "https://json.schemastore.org/eslintrc",
+  "extends": ["next/core-web-vitals", "airbnb", "eslint:recommended"],
+  "rules": {
+    "import/extensions": [0],
+    "object-property-newline": [
+      1,
+      {
+        "allowAllPropertiesOnSameLine": false
+      }
+    ],
+    "react/jsx-props-no-spreading": [0],
+    "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+    "react/react-in-jsx-scope": [0],
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ]
+  }
 }
