@@ -1,13 +1,13 @@
-import { Loader } from '@mantine/core';
-import { JetBrains_Mono as JetBrainsMono } from '@next/font/google';
+import {
+  Affix, Button, CopyButton, Loader,
+} from '@mantine/core';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
-import 'swagger-ui-react/swagger-ui.css';
+import { FaCheck, FaCopy } from 'react-icons/fa';
 import fetchSpec from '../../lib/spec';
 
-/* eslint-disable-next-line */
-const jetBrainsMono = JetBrainsMono({ subsets: ['latin'] });
+import 'swagger-ui-react/swagger-ui.css';
 
 const SwaggerUI = dynamic(() => import('swagger-ui-react'), {
   loading: () => (
@@ -55,7 +55,8 @@ export const getServerSideProps: GetServerSideProps<Data> = async (context) => {
       },
     };
   } catch (err) {
-    console.log(err);
+    /* eslint-disable-next-line no-console */
+    console.error(err);
 
     return {
       notFound: true,
@@ -65,9 +66,7 @@ export const getServerSideProps: GetServerSideProps<Data> = async (context) => {
 
 const Spec = ({ spec, url }: InferGetServerSidePropsType<typeof getServerSideProps>) => (
   <div
-    className={jetBrainsMono.className}
     style={{
-      fontFamily: `${jetBrainsMono.style.fontFamily} !important`,
       padding: '2.5rem 0',
     }}
   >
@@ -97,6 +96,29 @@ const Spec = ({ spec, url }: InferGetServerSidePropsType<typeof getServerSidePro
         ],
       }}
     />
+    <Affix
+      position={{
+        top: 20,
+        right: 20,
+      }}
+    >
+      <CopyButton value="https://mantine.dev">
+        {({ copied, copy }) => (
+          <Button
+            variant="outline"
+            onClick={copy}
+            leftIcon={
+              copied ? <FaCheck /> : <FaCopy />
+            }
+            style={{
+              backgroundColor: '#1a1b1e',
+            }}
+          >
+            {copied ? 'Copied link' : 'Copy link'}
+          </Button>
+        )}
+      </CopyButton>
+    </Affix>
     <SwaggerUI
       spec={spec}
     />

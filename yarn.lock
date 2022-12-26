@@ -268,6 +268,13 @@
     "@mantine/ssr" "5.9.5"
     "@mantine/styles" "5.9.5"
 
+"@mantine/nprogress@^5.9.5":
+  version "5.9.5"
+  resolved "https://registry.yarnpkg.com/@mantine/nprogress/-/nprogress-5.9.5.tgz#2327d3985a8543204d94eef4f540d36b6d04b41a"
+  integrity sha512-WJtdV6FrRB3LYm56WhWvezRQ/wCrgjd2kn6AciY2KS2nDhOBeZOSfZCEMSuvkOuQUTktQCL9l30oasbJNm8O0w==
+  dependencies:
+    "@mantine/utils" "5.9.5"
+
 "@mantine/ssr@5.9.5":
   version "5.9.5"
   resolved "https://registry.yarnpkg.com/@mantine/ssr/-/ssr-5.9.5.tgz#6811744f9a54dc451590caf2b727ccbd31478ed2"
