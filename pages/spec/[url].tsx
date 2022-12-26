@@ -105,14 +105,11 @@ const Spec = ({ spec, url }: InferGetServerSidePropsType<typeof getServerSidePro
       <CopyButton value={`https://swaggerviewer.ptr.red/spec/${encodeURIComponent(url)}`}>
         {({ copied, copy }) => (
           <Button
-            variant="outline"
+            variant="default"
             onClick={copy}
             leftIcon={
               copied ? <FaCheck /> : <FaCopy />
             }
-            style={{
-              backgroundColor: '#1a1b1e',
-            }}
           >
             {copied ? 'Copied link' : 'Copy link'}
           </Button>
