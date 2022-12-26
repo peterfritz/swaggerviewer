@@ -102,7 +102,7 @@ const Spec = ({ spec, url }: InferGetServerSidePropsType<typeof getServerSidePro
         right: 20,
       }}
     >
-      <CopyButton value="https://mantine.dev">
+      <CopyButton value={`https://swaggerviewer.ptr.red/spec/${encodeURIComponent(url)}`}>
         {({ copied, copy }) => (
           <Button
             variant="outline"
