@@ -19,7 +19,7 @@
 }
 
 .swagger-ui .model-title {
-  word-break: break-all !important;
+  overflow-wrap: anywhere !important;
 }
 
 @media (max-width: 768px) {
