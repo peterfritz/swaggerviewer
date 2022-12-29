@@ -8,6 +8,9 @@ const nextConfig = {
       permanent: true,
     },
   ]),
+  experimental: {
+    largePageDataBytes: 256 * 100000,
+  },
 };
 
 module.exports = nextConfig;

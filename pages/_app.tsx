@@ -41,7 +41,7 @@ const App = (props: AppProps) => {
       }}
     >
       <DefaultSeo
-        title="Swagger Viewer"
+        defaultTitle="Swagger Viewer"
         titleTemplate="%s | Swagger Viewer"
         openGraph={{
           type: 'website',
@@ -52,6 +52,13 @@ const App = (props: AppProps) => {
         twitter={{
           cardType: 'summary_large_image',
         }}
+        additionalLinkTags={[
+          {
+            rel: 'icon',
+            type: 'image/svg+xml',
+            href: '/sunglasses.svg',
+          },
+        ]}
       />
       <RouterTransition />
       <Affix

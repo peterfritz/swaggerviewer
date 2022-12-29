@@ -8,6 +8,7 @@ import { FaCheck, FaCopy } from 'react-icons/fa';
 import fetchSpec from '../../lib/spec';
 
 import 'swagger-ui-react/swagger-ui.css';
+import truncateText from '../../utils/text';
 
 const SwaggerUI = dynamic(() => import('swagger-ui-react'), {
   loading: () => (
@@ -45,7 +46,7 @@ export const getServerSideProps: GetServerSideProps<Data> = async (context) => {
 
     context.res.setHeader(
       'Cache-Control',
-      'public, s-maxage=300, stale-while-revalidate=86400',
+      `public, s-maxage=${24 * 60 * 60}, stale-while-revalidate=${365 * 24 * 60 * 60}`,
     );
 
     return {
@@ -71,22 +72,28 @@ const Spec = ({ spec, url }: InferGetServerSidePropsType<typeof getServerSidePro
     }}
   >
     <NextSeo
-      title={spec.info.title}
-      description={spec.info.description}
+      title={spec.info.title ? truncateText(spec.info.title, 42) : undefined}
+      description={spec.info.description ? truncateText(spec.info.description, 150) : undefined}
       canonical={`https://swaggerviewer.ptr.red/spec/${encodeURIComponent(url)}`}
       openGraph={{
         url: `https://swaggerviewer.ptr.red/spec/${encodeURIComponent(url)}`,
         siteName: 'Swagger Viewer',
-        title: spec.info.title,
-        description: spec.info.description,
+        title: spec.info.title ? truncateText(spec.info.title, 42) : undefined,
+        description: spec.info.description ? truncateText(spec.info.description, 150) : undefined,
         images: [
           {
             url: `https://swaggerviewer.ptr.red/api/og?t=${
-              encodeURIComponent(spec.info.title || 0)
+              encodeURIComponent(
+                spec.info.title ? truncateText(spec.info.title, 20) : 0,
+              )
             }&v=${
-              encodeURIComponent(spec.info.version || 0)
+              encodeURIComponent(
+                spec.info.version || 0,
+              )
             }&d=${
-              encodeURIComponent(spec.info.description || 0)
+              encodeURIComponent(
+                spec.info.description ? truncateText(spec.info.description, 160) : 0,
+              )
             }`,
             width: 1200,
             height: 630,
