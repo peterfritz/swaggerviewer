@@ -18,6 +18,38 @@
   margin: 0 0 0 10px !important;
 }
 
+.swagger-ui .model-title {
+  word-break: break-all !important;
+}
+
+@media (max-width: 768px) {
+  .swagger-ui .opblock-tag {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    grid-template-rows: repeat(2, 1fr) !important;
+    grid-column-gap: 0px !important;
+    grid-row-gap: 0px !important;
+  }
+
+  .swagger-ui .opblock-tag > button {
+    grid-area: 1 / 2 / 3 / 3 !important;
+    justify-self: end !important;
+  }
+
+  .swagger-ui .opblock-tag > a {
+    grid-area: 1 / 1 / 2 / 2 !important;
+  }
+
+  .swagger-ui .opblock-tag > small {
+    padding: 0 !important;
+    grid-area: 2 / 1 / 3 / 2 !important;
+  }
+
+  .swagger-ui .opblock-tag > small div p {
+    margin: 0;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   .swagger-ui * svg {
     fill: #b5bac9 !important;
