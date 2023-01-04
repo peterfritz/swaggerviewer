@@ -6,9 +6,9 @@ import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
 import { FaCheck, FaCopy } from 'react-icons/fa';
 import fetchSpec from '../../lib/spec';
+import truncateText from '../../utils/text';
 
 import 'swagger-ui-react/swagger-ui.css';
-import truncateText from '../../utils/text';
 
 const SwaggerUI = dynamic(() => import('swagger-ui-react'), {
   loading: () => (
@@ -44,10 +44,10 @@ export const getServerSideProps: GetServerSideProps<Data> = async (context) => {
 
     const spec = await fetchSpec(url);
 
-    context.res.setHeader(
-      'Cache-Control',
-      `public, s-maxage=${24 * 60 * 60}, stale-while-revalidate=${365 * 24 * 60 * 60}`,
-    );
+    // context.res.setHeader(
+    //   'Cache-Control',
+    //   `public, s-maxage=${24 * 60 * 60}, stale-while-revalidate=${365 * 24 * 60 * 60}`,
+    // );
 
     return {
       props: {
