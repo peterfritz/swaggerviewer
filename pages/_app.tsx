@@ -1,6 +1,5 @@
 import {
   Affix,
-  AspectRatio,
   Button,
   ColorScheme,
   ColorSchemeProvider,
@@ -107,10 +106,10 @@ const App = (props: AppProps & { theme: ColorScheme | 'system' }) => {
                   component={Link}
                   href="/"
                   leftIcon={(
-                    <AspectRatio
-                      ratio={10 / 4}
-                      w="1.75rem"
-                      mr={5}
+                    <div
+                      style={{
+                        width: '1.75rem',
+                      }}
                     >
                       <Image
                         src="/sunglasses.svg"
@@ -119,7 +118,7 @@ const App = (props: AppProps & { theme: ColorScheme | 'system' }) => {
                         height={200}
                         draggable={false}
                       />
-                    </AspectRatio>
+                    </div>
                   )}
                 >
                   <Text>

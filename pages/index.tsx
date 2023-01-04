@@ -10,8 +10,8 @@ const Home = () => (
       width: '100%',
     }}
   >
-    <CreditsAffix />
     <SpecForm />
+    <CreditsAffix />
   </Center>
 );
 
