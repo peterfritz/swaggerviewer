@@ -102,9 +102,8 @@ const handler = async (req: NextRequest) => {
           style: 'normal',
         },
       ],
-      // debug: true,
       headers: {
-        'Cache-Control': 'public, max-age=31536000, immutable',
+        'Cache-Control': `public, s-maxage=${60 * 60 * 2}, stale-while-revalidate=${60 * 60 * 24 * 365}}`,
       },
     },
   );

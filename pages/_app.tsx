@@ -9,11 +9,12 @@ import {
   Tooltip,
 } from '@mantine/core';
 import { useColorScheme } from '@mantine/hooks';
-import { JetBrains_Mono as JetBrainsMono } from '@next/font/google';
+import { Analytics } from '@vercel/analytics/react';
 import { getCookie, setCookie } from 'cookies-next';
 import { GetServerSidePropsContext } from 'next';
 import { DefaultSeo } from 'next-seo';
 import { AppProps } from 'next/app';
+import { JetBrains_Mono as JetBrainsMono } from 'next/font/google';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -129,12 +130,14 @@ const App = (props: AppProps & { theme: ColorScheme | 'system' }) => {
               <Button
                 variant="default"
                 onClick={() => toggleColorScheme()}
+                aria-hidden
               >
                 {colorScheme === 'dark' ? <FaMoon /> : <FaSun />}
               </Button>
             </Group>
           </Affix>
           <Component {...pageProps} />
+          <Analytics />
         </main>
       </MantineProvider>
     </ColorSchemeProvider>

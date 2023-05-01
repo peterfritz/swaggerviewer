@@ -1,7 +1,10 @@
 import {
   Affix, Button, CopyButton, Loader,
 } from '@mantine/core';
-import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
+import {
+  GetStaticProps,
+  InferGetStaticPropsType,
+} from 'next';
 import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
 import { FaCheck, FaCopy } from 'react-icons/fa';
@@ -38,7 +41,12 @@ interface Data {
   url: string
 }
 
-export const getServerSideProps: GetServerSideProps<Data> = async (context) => {
+export const getStaticPaths = async () => ({
+  paths: [],
+  fallback: 'blocking',
+});
+
+export const getStaticProps: GetStaticProps<Data> = async (context) => {
   try {
     const url = Buffer.from(context.params?.url as string, 'base64').toString('utf-8');
 
@@ -54,6 +62,7 @@ export const getServerSideProps: GetServerSideProps<Data> = async (context) => {
         spec,
         url: context.params?.url as string,
       },
+      revalidate: 60 * 60 * 2, // 2 hours
     };
   } catch (err) {
     /* eslint-disable-next-line no-console */
@@ -65,7 +74,7 @@ export const getServerSideProps: GetServerSideProps<Data> = async (context) => {
   }
 };
 
-const Spec = ({ spec, url }: InferGetServerSidePropsType<typeof getServerSideProps>) => (
+const Spec = ({ spec, url }: InferGetStaticPropsType<typeof getStaticProps>) => (
   <div
     style={{
       padding: '2.5rem 0',
